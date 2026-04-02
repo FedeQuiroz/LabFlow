@@ -10,3 +10,5 @@ async function loadSamples() {
 
   console.log(data)
 }
+
+loadSamples()
