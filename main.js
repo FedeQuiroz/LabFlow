@@ -8,7 +8,8 @@ async function loadSamples() {
     .from('samples')
     .select('*')
 
-  console.log(data)
+  console.log('DATA:', data)
+  console.log('ERROR:', error)
 }
 
 loadSamples()
