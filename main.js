@@ -20,7 +20,7 @@ async function loadSamples() {
         <td>${s.products.product_name}</td>
         <td style="text-align: center;">${s.batch}</td>
         <td style="text-align: center;">${s.stages.stage_name} (${s.stages.stage_temp ?? '-'}°C)</td>
-        <td>...</td>
+        <td style="text-align: center;">...</td>
       </tr>
     `
     document.getElementById('samplesBody').innerHTML += row
