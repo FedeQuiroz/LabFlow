@@ -5,13 +5,34 @@ const sb = window.supabase.createClient(
 
 
 async function loadSamples() {
-    const { data, error } = await sb
+  const { data } = await sb
     .from('samples')
-    .select('*')
-    
-    console.log('DATA:', data)
-    console.log('ERROR:', error)
+    .select(`
+      id,
+      batch,
+      products (product_name),
+      stages (stage_name, stage_temp)
+    `)
+
+  data.forEach(s => {
+    const row = `
+      <tr id='${s.id}' class="clickable-row">
+        <td>${s.products.product_name}</td>
+        <td style="text-align: center;">${s.batch}</td>
+        <td style="text-align: center;">${s.stages.stage_name} (${s.stages.stage_temp ?? '-'}°C)</td>
+        <td>...</td>
+      </tr>
+    `
+    document.getElementById('samplesBody').innerHTML += row
+  })
 }
 
-console.log('pete')
+
 loadSamples()
+
+document.getElementById('samplesBody').addEventListener('click', (e) => {
+  const row = e.target.closest('.clickable-row')
+  if (row) {
+    console.log(event.target.parentElement)
+  }
+})
